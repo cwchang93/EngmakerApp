@@ -15,39 +15,39 @@ const ENV = process.env.NODE_ENV === 'production';
 module.exports = withBundleAnalyzer(
     withCSS(
         withSass({
-                distDir: ENV === 'production' ? 'proBuild' : '.next',
-                generateInDevMode: false,
+            distDir: ENV ? 'proBuild' : '.next',
+            // generateInDevMode: false,
 
-                // exportPathMap: function() {
-                //     return {
-                //         '/': { page: '/' },
-                //     };
-                // },
-                webpack(config, { isServer }) {
-                    if (isServer) {
-                        const antStyles = /antd\/.*?\/style\/css.*?/
-                        const origExternals = [...config.externals]
-                        config.externals = [
-                          (context, request, callback) => {
-                            if (request.match(antStyles)) return callback()
+            // exportPathMap: function() {
+            //     return {
+            //         '/': { page: '/' },
+            //     };
+            // },
+            webpack(config, { isServer }) {
+                if (isServer) {
+                    const antStyles = /antd\/.*?\/style\/css.*?/;
+                    const origExternals = [...config.externals];
+                    config.externals = [
+                        (context, request, callback) => {
+                            if (request.match(antStyles)) return callback();
                             if (typeof origExternals[0] === 'function') {
-                              origExternals[0](context, request, callback)
+                                origExternals[0](context, request, callback);
                             } else {
-                              callback()
+                                callback();
                             }
-                          },
-                          ...(typeof origExternals[0] === 'function' ? [] : origExternals),
-                        ];
+                        },
+                        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
+                    ];
 
-                        config.module.rules.unshift({
-                            test: antStyles,
-                            use: 'null-loader',
-                        });
-                    }
+                    config.module.rules.unshift({
+                        test: antStyles,
+                        use: 'null-loader',
+                    });
+                }
 
-                    const mergeConfig = merge(common, config);
-                    return mergeConfig;
-                },
-            }),
+                const mergeConfig = merge(common, config);
+                return mergeConfig;
+            },
+        }),
     ),
 );
