@@ -20,7 +20,7 @@ module.exports = ({ config }:{ config: any; mode?: any }) => {
         loader: require.resolve('babel-loader'),
         options: {
             presets: [require.resolve('babel-preset-react-app')],
-            plugins: [["import", { libraryName: "antd", style: "css" }]]
+            // plugins: [["import", { libraryName: "antd", style: "css" }]]
         },
     });
 

@@ -7,6 +7,8 @@ import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import createStore from '@root/redux/store';
 import Header from '@components/hd_test';
+import './style.scss';
+
 interface MyApp_props extends App {
     Component: any;
     pageProps: any;
