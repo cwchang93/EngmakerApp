@@ -33,7 +33,9 @@ module.exports = withBundleAnalyzer(
                 //         '/': { page: '/' },
                 //     };
                 // },
-                webpack(config, { isServer }) {
+                webpack(config, {
+                    isServer
+                }) {
                     if (isServer) {
                         const antStyles = /antd\/.*?\/style.*?/;
                         const origExternals = [...config.externals];

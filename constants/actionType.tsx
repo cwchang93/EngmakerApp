@@ -15,6 +15,7 @@ const actionTypes = {
     LOGIN_GOOGLE: 'LOGIN_GOOGLE',
     GOOGLE_ALERT: 'GOOGLE_ALERT',
     LOGIN_ALERT: 'LOGIN_ALERT',
+
     SET_USER_DATA: 'SET_USER_DATA',
 };
 
