@@ -1,0 +1,187 @@
+@import '@components/library/style/core/var.scss';
+@import '@components/library/style/core/font.scss';
+// @import '@components/library/style/core/basic.scss';
+@import '@components/library/style/function/flex.scss';
+@import '@components/library/style/function/screen.scss';
+
+
+
+/**
+ * Define your classname
+ */
+$classname: 'hd_test';
+
+/**
+ * Start your css code
+ * 1. 請在您模組的所有selector都要以模組的classname為前綴名稱  (範例:'bc_coxx')
+ * 2. 在設計RWD時，請在每個selector內加上media query，而不是在media query內有selector
+ * 3. 下media query時請依手機優先的設計方法來設計
+ */
+%break_div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0005;
+    user-select: none;
+    @include flexcc;
+
+    &.none {
+        display: none;
+    }
+}
+
+%from {
+    display: grid;
+    padding: 12px;
+    gap: 12px;
+    height: fit-content;
+}
+
+.#{$classname} {
+    display: grid;
+    // grid-template-columns: repeat(3, auto);
+    grid-template-columns: 1fr auto auto;
+    padding: 5px 10px;
+    gap: 8px;
+
+    >div.icon {
+        @include flexcc;
+
+        &.none {
+            visibility: hidden;
+        }
+    }
+
+    >div.login_page {
+        @extend %break_div;
+
+        >div {
+
+            position: relative;
+            display: flex;
+            width: 100%;
+
+            @include pc {
+                width: 300px;
+            }
+
+            background-color: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+
+            .ant-tabs {
+                width: -webkit-fill-available;
+            }
+
+            .auth {
+                @extend %from;
+                grid-template-rows: repeat(3, 1fr);
+            }
+
+            .sign {
+                @extend %from;
+                grid-template-rows: repeat(3, 1fr) auto;
+
+                >div.last {
+                    grid-row-start: 4;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    align-items: center;
+                }
+
+                >div {
+                    >div {
+                        margin-bottom: 8px;
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+    >div.wait_page {
+        @extend %break_div;
+        flex-flow: column;
+
+        &::before {
+            content: '\21BA';
+            color: #fff;
+            font-size: 100px;
+            animation: wait 0.8s linear infinite;
+        }
+
+        &::after {
+            content: attr(data-alert);
+            color: #fff;
+            font-size: 30px;
+        }
+
+        @keyframes wait {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+    }
+
+    >div.alert_tool {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 0;
+        width: -webkit-fill-available;
+        @include flexcc;
+
+        >span {
+            background-color: #0005;
+            color: #fff;
+            font-size: $font-size;
+            padding: 5px 10px;
+            animation: alert 1s linear alternate;
+            transform: translateY(-100%);
+            animation-iteration-count: 2;
+            border-radius: 0 0 5px 5px;
+        }
+
+        @keyframes alert {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            30%,
+            100% {
+                transform: translateY(0%);
+            }
+
+        }
+
+        &.none {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: $screen-tablet) {
+        // style on tablet device
+    }
+
+    @media screen and (min-width: $screen-desktop) {
+        // style on desktop device
+    }
+
+    @media screen and (min-width: $screen-lg-desktop) {
+        // style on desktop device
+    }
+
+
+
+}
+
+;
