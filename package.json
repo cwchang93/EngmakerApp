@@ -34,6 +34,7 @@
         "@storybook/addon-knobs": "^5.1.11",
         "@storybook/addon-notes": "^5.1.11",
         "@storybook/react": "^5.1.11",
+        "@svgr/webpack": "^4.3.2",
         "@types/classnames": "^2.2.9",
         "@types/next-redux-saga": "^3.0.1",
         "@types/node": "^12.7.2",

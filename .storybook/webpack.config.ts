@@ -6,8 +6,15 @@ const root = Path.resolve(__dirname, '../');
 const common = require(Path.resolve(root, 'config/webpack.commons.js'));
 
 module.exports = ({ config }:{ config: any; mode?: any }) => {
-    const mergeConfig = merge(common, config);
 
+    const rule = config.module.rules.find((r:any) =>
+        r.test && r.test.toString().includes('svg') &&
+        r.loader && r.loader.includes('file-loader')
+    );
+    rule.test = /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani)(\?.*)?$/;
+
+    const mergeConfig = merge(common, config);
+    
     mergeConfig.module.rules.push({
         test: /\.(ts|tsx)$/,
         loader: require.resolve('babel-loader'),
@@ -46,7 +53,7 @@ module.exports = ({ config }:{ config: any; mode?: any }) => {
         ],
     });
 
-    mergeConfig.resolve.extensions.push('.ts', '.tsx', '.css', '.scss');
+    mergeConfig.resolve.extensions.push('.ts', '.tsx', '.css', '.scss', 'svg');
 
     // mergeConfig.plugins.push(
     //   new ForkTsCheckerWebpackPlugin({

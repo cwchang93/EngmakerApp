@@ -12,7 +12,7 @@ const common = require(path.resolve(root, 'config/webpack.commons.js'));
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.NODE_ENV === 'production',
 });
-
+const ENV = process.env.NODE_ENV === 'production';
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(fs.readFileSync(path.resolve(__dirname, './assets/antd-custom.less'), 'utf8'));
 
@@ -20,7 +20,7 @@ module.exports = withBundleAnalyzer(
     withCSS(
         withSass(
             withLess({
-                distDir: process.env.NODE_ENV === 'production' ? 'proBuild' : '.next',
+                distDir: ENV === 'production' ? 'proBuild' : '.next',
                 generateInDevMode: false,
 
                 lessLoaderOptions: {
@@ -56,10 +56,10 @@ module.exports = withBundleAnalyzer(
                     }
 
                     // 除外 generate 的 templates
-                    config.module.rules.push({
-                        test: /\/config\/generate\/.*.tsx$/,
-                        loader: 'ignore-loader',
-                    });
+                    // config.module.rules.push({
+                    //     test: /\/config\/generate\/.*.tsx$/,
+                    //     loader: 'ignore-loader',
+                    // });
 
                     const mergeConfig = merge(common, config);
                     return mergeConfig;

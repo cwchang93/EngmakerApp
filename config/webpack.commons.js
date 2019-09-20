@@ -3,7 +3,25 @@ const root = path.resolve(__dirname, '../');
 const webpack = require('webpack');
 
 module.exports = {
-    module: {},
+    module: {
+        rules: [
+            {
+                test: /\/config\/generate\/.*.tsx$/,
+                loader: 'ignore-loader',
+            },
+            {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: '@svgr/webpack',
+                        options: {
+                            native: false,
+                        },
+                    },
+                ],
+            },
+        ],
+    },
     resolve: {
         alias: {
             '@root': path.resolve(root),
