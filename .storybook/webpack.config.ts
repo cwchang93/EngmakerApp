@@ -4,7 +4,7 @@ const root = path.resolve(__dirname, '../');
 
 // const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const common = require(path.resolve(root, 'config/webpack.commons.js'));
-const { themeVariables } = require('../plug/antd-webpack.commons');
+const { themeVariables } = require(path.resolve(root, 'plug/antd-webpack.commons'));
 
 module.exports = ({ config }:{ config: any; mode?: any }) => {
 

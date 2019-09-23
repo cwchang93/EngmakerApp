@@ -15,7 +15,7 @@
         "sourceMap": true,
         "strict": true,
         "target": "esnext",
-        "typeRoots": ["./node_modules/@types", "./tsroot"],
+        "typeRoots": ["./node_modules/@types", "./config/tsroot"],
         "baseUrl": ".",
         "paths": {
             "@root/*": ["./*"],

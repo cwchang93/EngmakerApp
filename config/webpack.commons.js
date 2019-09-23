@@ -30,6 +30,7 @@ module.exports = {
             '@redux': path.resolve(root, './redux'),
             '@magaele': path.resolve(root, './magaele'),
             '@config': path.resolve(root, './config'),
+            '@plug': path.resolve(root, './plug'),
             '@components': path.resolve(root, './components'),
             '@static': path.resolve(root, './static'),
         },

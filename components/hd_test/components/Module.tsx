@@ -1,8 +1,8 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { useSelector } from 'react-redux';
-import actionTypes from '@constants/actionType';
-import { Button, Tabs, Input, Icon } from 'antd';
+import actionTypes, { alert_list } from '@constants/actionType';
+import { Button, Tabs, Input, Icon, message } from 'antd';
 
 import '../css.scss';
 
@@ -29,6 +29,25 @@ const Module: React.FC<hd_test_props> = props => {
     const [tabs, settabs] = React.useState(1);
     // console.log('logState', loginState.logState);
     // console.log('alert', loginState.alert);
+    const messag = (mes: string): void => {
+        console.log(mes);
+        switch (mes) {
+            case alert_list.Login:
+            case alert_list.Logout:
+                message.success(mes);
+                console.log(mes);
+                break;
+            case alert_list.Login_fail:
+                message.error(mes);
+                break;
+            default:
+                message.info(mes);
+        }
+    };
+    const didMountRef = React.useRef(false);
+    React.useEffect(() => {
+        didMountRef.current ? loginState.alert && messag(loginState.alert) : (didMountRef.current = true);
+    }, [loginState.alert]);
 
     const login_props = {
         style: { borderColor: '#52004e', backgroundColor: '#52004e' },
@@ -40,7 +59,7 @@ const Module: React.FC<hd_test_props> = props => {
     const logout_props = {
         style: { borderColor: '#000000', backgroundColor: '#000000', color: '#000000' },
         onClick: () => {
-            action(actionTypes.LOGOUT_OK, { alert: '成功登出' });
+            action(actionTypes.LOGOUT_OK, { alert: alert_list.Logout });
         },
     };
 
@@ -208,9 +227,6 @@ const Module: React.FC<hd_test_props> = props => {
                 className={cx('wait_page', { none: !(loginState.logState === actionTypes.LOGIN) })}
                 data-alert={loginState.googleProvider}
             />
-            <div className={cx('alert_tool', { none: !loginState.alert })} key={`alert_tool_${loginState.alert}`}>
-                <span>{loginState.alert}</span>
-            </div>
         </div>
     );
 };

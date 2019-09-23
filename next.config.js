@@ -7,19 +7,19 @@ const withCSS = require('@zeit/next-css');
 const withLess = require('@zeit/next-less');
 
 const common = require(path.resolve(root, 'config/webpack.commons.js'));
-const { themeVariables } = require('./plug/antd-webpack.commons');
+const { themeVariables } = require(path.resolve(root, 'plug/antd-webpack.commons.js'));
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-    enabled: process.env.NODE_ENV === 'production',
-});
 const ENV = process.env.NODE_ENV === 'production';
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: ENV,
+});
 // Where your antd-custom.less file lives
 
 module.exports = withBundleAnalyzer(
     withCSS(
         withSass(
             withLess({
-                distDir: ENV === 'production' ? 'proBuild' : '.next',
+                distDir: ENV ? 'proBuild' : '.next',
                 generateInDevMode: false,
 
                 lessLoaderOptions: {
