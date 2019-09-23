@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Module, { Mode } from './index';
+import { Button } from 'antd';
 
 import { withKnobs, text, boolean, object, number, select } from '@storybook/addon-knobs';
 storiesOf('Button(按鈕)', module)
@@ -29,6 +30,7 @@ storiesOf('Button(按鈕)', module)
         return (
             <div>
                 <div>
+                    <Button type="primary">Primary</Button>
                     <div>我是主角</div>
                     <Module {...props} />
                 </div>
