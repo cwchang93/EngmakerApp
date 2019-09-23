@@ -57,6 +57,7 @@
         "eslint-plugin-react": "^7.14.3",
         "firebase": "^6.6.0",
         "fork-ts-checker-webpack-plugin": "^1.5.0",
+        "isomorphic-unfetch": "^3.0.0",
         "next-redux-saga": "^4.0.2",
         "nodemon": "^1.19.1",
         "postcss-loader": "^3.0.0",

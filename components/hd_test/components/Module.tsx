@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { useSelector } from 'react-redux';
 import actionTypes from '@constants/actionType';
-import { Button, Tabs, Input } from 'antd';
+import { Button, Tabs, Input, Icon } from 'antd';
 
 import '../css.scss';
 
@@ -134,6 +134,8 @@ const Module: React.FC<hd_test_props> = props => {
                                 <div>
                                     <div>UserName:</div>
                                     <Input
+                                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                        placeholder="username"
                                         onChange={e => {
                                             Fromdata(From.Login_N, e.target.value);
                                         }}
@@ -142,6 +144,7 @@ const Module: React.FC<hd_test_props> = props => {
                                 <div>
                                     <div>UserPass:</div>
                                     <Input.Password
+                                        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                         placeholder="password"
                                         onChange={e => {
                                             Fromdata(From.Login_P, e.target.value);
@@ -163,6 +166,8 @@ const Module: React.FC<hd_test_props> = props => {
                                 <div>
                                     <div>UserName:</div>
                                     <Input
+                                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                        placeholder="username"
                                         onChange={e => {
                                             Fromdata(From.SignUp_N, e.target.value);
                                         }}
@@ -171,6 +176,7 @@ const Module: React.FC<hd_test_props> = props => {
                                 <div>
                                     <div>UserPass:</div>
                                     <Input.Password
+                                        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                         placeholder="password"
                                         onChange={e => {
                                             Fromdata(From.SignUp_P, e.target.value);
@@ -180,6 +186,7 @@ const Module: React.FC<hd_test_props> = props => {
                                 <div>
                                     <div>AgingPass:</div>
                                     <Input.Password
+                                        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                         placeholder="password"
                                         onChange={e => {
                                             Fromdata(From.SignUp_PV, e.target.value);
