@@ -1,9 +1,10 @@
 const merge = require('webpack-merge');
-const Path = require('path');
-const root = Path.resolve(__dirname, '../');
+const path = require('path');
+const root = path.resolve(__dirname, '../');
 
 // const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const common = require(Path.resolve(root, 'config/webpack.commons.js'));
+const common = require(path.resolve(root, 'config/webpack.commons.js'));
+const { themeVariables } = require('../plug/antd-webpack.commons');
 
 module.exports = ({ config }:{ config: any; mode?: any }) => {
 
@@ -20,7 +21,7 @@ module.exports = ({ config }:{ config: any; mode?: any }) => {
         loader: require.resolve('babel-loader'),
         options: {
             presets: [require.resolve('babel-preset-react-app')],
-            // plugins: [["import", { libraryName: "antd", style: "css" }]]
+            plugins: [["import", { libraryName: "antd", style: true }]]
         },
     });
 
@@ -54,8 +55,29 @@ module.exports = ({ config }:{ config: any; mode?: any }) => {
             },
         ],
     });
+    mergeConfig.module.rules.push({
+        test: /\.less$/,
+        use: [
+            {
+                loader: 'style-loader',
+            },
+            {
+                loader: 'css-loader',
+                options: {
+                    localIdentName: '[local]',
+                },
+            },
+            {
+                loader: 'less-loader',
+                options: {
+                    modifyVars: themeVariables,
+                    javascriptEnabled: true
+                },
+            },
+        ],
+    });
 
-    mergeConfig.resolve.extensions.push('.ts', '.tsx', '.css', '.scss', 'svg');
+    mergeConfig.resolve.extensions.push('.ts', '.tsx', '.css', '.scss', 'svg', '.less');
 
     // mergeConfig.plugins.push(
     //   new ForkTsCheckerWebpackPlugin({
