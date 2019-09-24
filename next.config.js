@@ -7,6 +7,7 @@ const withCSS = require('@zeit/next-css');
 const withLess = require('@zeit/next-less');
 
 const common = require(path.resolve(root, 'config/webpack.commons.js'));
+const { optimization } = require(path.resolve(root, 'config/webpack.optimization.js'));
 const { themeVariables } = require(path.resolve(root, 'plug/antd-webpack.commons.js'));
 
 const ENV = process.env.NODE_ENV === 'production';
@@ -59,8 +60,8 @@ module.exports = withBundleAnalyzer(
                     //     test: /\/config\/generate\/.*.tsx$/,
                     //     loader: 'ignore-loader',
                     // });
-
                     const mergeConfig = merge(common, config);
+
                     return mergeConfig;
                 },
             }),

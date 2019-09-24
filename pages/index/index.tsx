@@ -7,6 +7,7 @@ import './css.scss';
 import { fireDb } from '@config/firebase';
 // import { useRouter } from "next/router";
 
+import Apple from '@static/apple.svg';
 const Home = (props: any) => {
     const classnames = 'home_';
     const { countState, userState } = useSelector((state: { countState: any; userState: any }) => state);
@@ -114,6 +115,9 @@ const Home = (props: any) => {
                     </div>
                 </div>
             ) : null}
+            <div>
+                <Apple />
+            </div>
         </div>
     );
 };

@@ -8,7 +8,6 @@ import withReduxSaga from 'next-redux-saga';
 import createStore from '@root/redux/store';
 import Header from '@components/hd_test';
 import './style.scss';
-
 interface MyApp_props extends App {
     Component: any;
     pageProps: any;
@@ -24,7 +23,13 @@ const MyApp: React.FC<MyApp_props> = props => {
     return (
         <Container>
             <Head>
-                <link rel="stylesheet" type="text/css" href={'/_next/static/css/styles.chunk.css?v=' + Date.now()} />
+                {process.env.NODE_ENV === 'development' && (
+                    <link
+                        rel="stylesheet"
+                        type="text/css"
+                        href={'/_next/static/css/styles.chunk.css?v=' + Date.now()}
+                    />
+                )}
             </Head>
             <Provider store={store}>
                 {process.env.NODE_ENV === 'development' && <Router />}

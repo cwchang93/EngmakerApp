@@ -1,6 +1,7 @@
 const path = require('path');
 const root = path.resolve(__dirname, '../');
 const webpack = require('webpack');
+const My_ptimization = require('./webpack.optimization.js');
 
 module.exports = {
     module: {
@@ -45,25 +46,5 @@ module.exports = {
         }),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en-gb/),
     ],
-
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                reactBase: {
-                    name: 'reactBase',
-                    test: module => {
-                        return /react|redux|prop-types/.test(module.context);
-                    },
-                    chunks: 'initial',
-                    priority: 10,
-                },
-                common: {
-                    name: 'common',
-                    chunks: 'initial',
-                    priority: 2,
-                    minChunks: 1,
-                },
-            },
-        },
-    },
+    optimization: process.env.NODE_ENV === 'production' ? My_ptimization : false,
 };
