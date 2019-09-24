@@ -3,7 +3,6 @@ import CX from 'classnames';
 // import { Mode } from '../';
 import '../css.scss';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-// const FUNC = require('@config/funtion');
 
 interface bt_bsic_props {
     img_list: (string | undefined)[];

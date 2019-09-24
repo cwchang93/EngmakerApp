@@ -1,8 +1,8 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { useSelector } from 'react-redux';
-import actionTypes from '@constants/actionType';
-import { Button, Tabs, Input } from 'antd';
+import actionTypes, { alert_list } from '@constants/actionType';
+import { Button, Tabs, Input, Icon, message, Avatar, Dropdown, Menu } from 'antd';
 
 import '../css.scss';
 
@@ -29,6 +29,26 @@ const Module: React.FC<hd_test_props> = props => {
     const [tabs, settabs] = React.useState(1);
     // console.log('logState', loginState.logState);
     // console.log('alert', loginState.alert);
+    const messag = (mes: string): void => {
+        console.log(mes);
+        switch (mes) {
+            case alert_list.Login:
+            case alert_list.Logout:
+                message.success(mes);
+                console.log(mes);
+                break;
+            case alert_list.Login_fail:
+                message.error(mes);
+                break;
+            default:
+                message.info(mes);
+        }
+    };
+
+    const didMountRef = React.useRef(false);
+    React.useEffect(() => {
+        didMountRef.current ? loginState.alert && messag(loginState.alert) : (didMountRef.current = true);
+    }, [loginState.alert]);
 
     const login_props = {
         style: { borderColor: '#52004e', backgroundColor: '#52004e' },
@@ -40,7 +60,7 @@ const Module: React.FC<hd_test_props> = props => {
     const logout_props = {
         style: { borderColor: '#000000', backgroundColor: '#000000', color: '#000000' },
         onClick: () => {
-            action(actionTypes.LOGOUT_OK, { alert: '成功登出' });
+            action(actionTypes.LOGOUT_OK, { alert: alert_list.Logout });
         },
     };
 
@@ -83,6 +103,16 @@ const Module: React.FC<hd_test_props> = props => {
         },
     };
 
+    const imput_username = {
+        prefix: <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />,
+        placeholder: 'username',
+    };
+
+    const imput_password = {
+        prefix: <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />,
+        placeholder: 'password',
+    };
+
     const onTabClick = (key: number) => {
         settabs(() => key);
     };
@@ -92,12 +122,25 @@ const Module: React.FC<hd_test_props> = props => {
             return pre.set(set, data);
         });
     };
-
+    const menu = (
+        <Menu>
+            <div style={{ margin: 'auto' }}>Hello {loginState.data && loginState.data.name}</div>
+            <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+                    1st menu item
+                </a>
+            </Menu.Item>
+        </Menu>
+    );
     return (
         <div className={cx(classname)}>
             <div>{children}</div>
             <div className={cx('icon', { none: !(loginState.logState === actionTypes.LOGIN_OK) })}>
-                😎 Hello~ {loginState.data && loginState.data.name}
+                <Dropdown overlay={menu} trigger={['click']} placement="bottomRight">
+                    <Avatar style={{ backgroundColor: '#87d068', cursor: 'pointer' }}>
+                        {loginState.data && loginState.data.name}
+                    </Avatar>
+                </Dropdown>
             </div>
             {loginState.logState === actionTypes.LOGIN_OK ? (
                 <Button type="primary" {...logout_props} ghost>
@@ -134,6 +177,7 @@ const Module: React.FC<hd_test_props> = props => {
                                 <div>
                                     <div>UserName:</div>
                                     <Input
+                                        {...imput_username}
                                         onChange={e => {
                                             Fromdata(From.Login_N, e.target.value);
                                         }}
@@ -142,7 +186,7 @@ const Module: React.FC<hd_test_props> = props => {
                                 <div>
                                     <div>UserPass:</div>
                                     <Input.Password
-                                        placeholder="password"
+                                        {...imput_password}
                                         onChange={e => {
                                             Fromdata(From.Login_P, e.target.value);
                                         }}
@@ -163,6 +207,7 @@ const Module: React.FC<hd_test_props> = props => {
                                 <div>
                                     <div>UserName:</div>
                                     <Input
+                                        {...imput_username}
                                         onChange={e => {
                                             Fromdata(From.SignUp_N, e.target.value);
                                         }}
@@ -171,7 +216,7 @@ const Module: React.FC<hd_test_props> = props => {
                                 <div>
                                     <div>UserPass:</div>
                                     <Input.Password
-                                        placeholder="password"
+                                        {...imput_password}
                                         onChange={e => {
                                             Fromdata(From.SignUp_P, e.target.value);
                                         }}
@@ -180,7 +225,7 @@ const Module: React.FC<hd_test_props> = props => {
                                 <div>
                                     <div>AgingPass:</div>
                                     <Input.Password
-                                        placeholder="password"
+                                        {...imput_password}
                                         onChange={e => {
                                             Fromdata(From.SignUp_PV, e.target.value);
                                         }}
@@ -201,9 +246,6 @@ const Module: React.FC<hd_test_props> = props => {
                 className={cx('wait_page', { none: !(loginState.logState === actionTypes.LOGIN) })}
                 data-alert={loginState.googleProvider}
             />
-            <div className={cx('alert_tool', { none: !loginState.alert })} key={`alert_tool_${loginState.alert}`}>
-                <span>{loginState.alert}</span>
-            </div>
         </div>
     );
 };
