@@ -27,11 +27,11 @@ module.exports = withBundleAnalyzer(
                     javascriptEnabled: true,
                     localIdentName: '[local]___[hash:base64:5]',
                 },
-                // exportPathMap: function() {
-                //     return {
-                //         '/': { page: '/' },
-                //     };
-                // },
+                exportPathMap: function() {
+                    return {
+                        '/': { page: '/' },
+                    };
+                },
                 webpack(config, { isServer }) {
                     if (isServer) {
                         const antStyles = /antd\/.*?\/style.*?/;
