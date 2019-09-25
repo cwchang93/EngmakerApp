@@ -1,8 +1,8 @@
 define({ "api": [
   {
-    "type": "get",
+    "type": "post",
     "url": "/calendar",
-    "title": "取得calendar成員參與資料",
+    "title": "填寫當天主持表單",
     "group": "Calendar",
     "parameter": {
       "fields": {
@@ -32,7 +32,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "href",
+            "field": "link",
             "description": "<p>主題連結</p>"
           },
           {
@@ -49,7 +49,12 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response",
-          "content": "{\n \"code\": 200,\n \"msg\": \"OK\",\n \"data\": {\n     \"hostName\": \"Jinwei\",\n     \"assistHost\": \"CY\",\n\n }\n\n\n}",
+          "content": "{\n \"code\": 200,\n \"msg\": \"OK\",\n \"data\": [{\n     \"date\": \"2019-09-02\",\n     \"morning\": true,\n     \"host\": \"Jinwei\",\n     \"assistHost\": \"CY\",\n     \"topic\": \"How to pick up a girl?\",\n     \"link\": \"https://www.google.com\",\n     \"attendees\": [\"CYC\", \"Andrew\", \"Joy\", \"Bella\"]\n }]\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Success-Response",
+          "content": "{\n \"code\": 200,\n \"msg\": \"OK\",\n \"data\": [{\n     \"date\": \"2019-09-02\",\n     \"morning\": true,\n     \"host\": \"Jinwei\",\n     \"assistHost\": \"CY\",\n     \"topic\": \"How to pick up a girl?\",\n     \"link\": \"https://www.google.com\",\n     \"attendees\": [\"CYC\", \"Andrew\", \"Joy\", \"Bella\"]\n }]\n \"data\": [{\n     \"date\": \"2019-09-02\",\n\n     \"morning\": {\n         \"host\": \"Jinwei\",\n         \"assistHost\": \"CY\",\n         \"topic\": \"How to pick up a girl?\",\n         \"link\": \"https://www.google.com\",\n         \"attendees\": [\"CYC\", \"Andrew\", \"Joy\", \"Bella\"]\n     }\n     \"night\":{\n         \"host\": \"WeiJ\",\n         \"assistHost\": \"CY\",\n         \"topic\": \"How to pick up a boy?\",\n         \"link\": \"https://www.google.com\",\n         \"attendees\": [\"CYC\", \"Andrew\", \"Joy\", \"Bella\"]\n     }\n }]\n\n}",
           "type": "json"
         }
       ]
@@ -57,6 +62,6 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "studygroupApp/calendar.js",
     "groupTitle": "Calendar",
-    "name": "GetCalendar"
+    "name": "PostCalendar"
   }
 ] });
