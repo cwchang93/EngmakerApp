@@ -14,7 +14,29 @@ $classname: "Calendar";
     display: flex;
     justify-content: center;
 
+    .leftArrow {
+      position: absolute;
+      left: 20px;
+
+      .ic_xicn {
+        display: inline-block;
+        transform-origin: center;
+      }
+    }
+
+    .rightArrow {
+      position: absolute;
+      right: 20px;
+
+      .ic_xicn {
+        display: inline-block;
+        transform-origin: center;
+        transform: rotate(180deg);
+      }
+    }
+
     .headWrapItem {
+      position: relative;
       cursor: pointer;
       padding: 5px 0 0;
       width: calc(100% / 3);

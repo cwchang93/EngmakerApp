@@ -5,10 +5,23 @@ import classNames from 'classnames';
 // console.log("ant", Button);
 // import styles from '../css.scss';
 const styles = require('../css.scss');
+import IcXicn from '@components/ic_xicn';
 
 interface I_props {
     initYearMonth: string;
 }
+
+// interface dateData {
+//   date:
+// }
+
+// const dateData = [{
+//   date: '2019-1-1',
+//   host: 'Jinwei'
+
+// }
+
+// ]
 
 const Module: React.FC<I_props> = props => {
     const classnames = 'Calendar';
@@ -72,7 +85,11 @@ const Module: React.FC<I_props> = props => {
         const dateArr = [];
         for (let i = 0; i < dateNum; i++) {
             dateArr.push(
-                <div className="day" id={`${renderYear}-${renderMonth}-${i + 1}`} onClick={e => console.log(e.target)}>
+                <div
+                    className="day"
+                    id={`${renderYear}-${renderMonth}-${i + 1}`}
+                    onClick={e => console.log(e.currentTarget)}
+                >
                     <span className="dateNum">{i + 1}</span>
                     <img src="https://picsum.photos/25/25" style={{ borderRadius: '50%' }} />
                     <img src="https://picsum.photos/25/25" style={{ borderRadius: '50%' }} />
@@ -116,10 +133,17 @@ const Module: React.FC<I_props> = props => {
                 })}
             >
                 {/* <Button type="primary">Button</Button> */}
-                <button onClick={clickPrevMonth}>clickPrevMonth</button>
-                <button onClick={clickNextMonth}>clickNextMonth</button>
+                {/* <button onClick={clickPrevMonth}>clickPrevMonth</button>
+                <button onClick={clickNextMonth}>clickNextMonth</button> */}
+
+                {/* <Module {...common} word={'❮'} />
+                    {link('heavy-left-pointing-angle-quotation-mark-ornament')} */}
+
                 <div className="headWrap">
-                    <div className="headWrapItem">
+                    <div className="headWrapItem" onClick={clickPrevMonth}>
+                        <span className="leftArrow">
+                            <IcXicn size="x1.5" word={'❮'} />
+                        </span>
                         <span>
                             {renderPrevYear} {renderPrevMonth}
                         </span>
@@ -129,7 +153,10 @@ const Module: React.FC<I_props> = props => {
                             {renderYear} {renderMonth}月
                         </span>
                     </div>
-                    <div className="headWrapItem">
+                    <div className="headWrapItem" onClick={clickNextMonth}>
+                        <span className="rightArrow">
+                            <IcXicn size="x1.5" word={'❮'} />
+                        </span>
                         <span>
                             {renderNextYear} {renderNextMonth}月
                         </span>
