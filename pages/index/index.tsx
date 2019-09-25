@@ -31,9 +31,10 @@ const Home = (props: any) => {
             console.error(e);
         }
     };
-    // Write();
+    Write();
     const Read = async () => {
-        const ref = await fireDb.collection('test').doc('test');
+        // const ref = await fireDb.collection('test').doc('test');
+        const ref = await fireDb.collection(',kljh').doc('calendarData');
         try {
             const data = await ref.get();
 
@@ -43,7 +44,7 @@ const Home = (props: any) => {
             console.error(e);
         }
     };
-    // Read();
+    Read();
     const remove = async () => {
         const ref = await fireDb.collection('test').doc('test');
         try {

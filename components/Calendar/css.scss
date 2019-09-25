@@ -1,0 +1,95 @@
+/**
+//  */
+// @import "../../magaele/core/core/mixins";
+// @import "../../magaele/core/core/_variables.scss";
+// @import "../../magaele/core/core/themes/xinshop.scss";
+/**
+ * Define your classname
+ */
+// @import '~antd/dist/antd.css';
+$classname: "Calendar";
+
+.#{$classname} {
+  .headWrap {
+    display: flex;
+    justify-content: center;
+
+    .leftArrow {
+      position: absolute;
+      left: 20px;
+
+      .ic_xicn {
+        display: inline-block;
+        transform-origin: center;
+      }
+    }
+
+    .rightArrow {
+      position: absolute;
+      right: 20px;
+
+      .ic_xicn {
+        display: inline-block;
+        transform-origin: center;
+        transform: rotate(180deg);
+      }
+    }
+
+    .headWrapItem {
+      position: relative;
+      cursor: pointer;
+      padding: 5px 0 0;
+      width: calc(100% / 3);
+      background: #ede9dd;
+
+      .active {
+        background: white;
+      }
+
+      >span {
+        height: 25px;
+        font-size: 16px;
+        color: #666;
+        line-height: 1.25;
+        display: block;
+        text-align: center;
+      }
+    }
+  }
+
+  .bodyWrap {
+    .wkDayWrap {
+      display: flex;
+      height: 35px;
+      align-items: center;
+
+      .weekDay {
+        width: calc(100% / 7);
+        text-align: center;
+        height: 100%;
+        line-height: 35px;
+      }
+    }
+
+    .dayWrap {
+      display: flex;
+      flex-wrap: wrap;
+
+      .day {
+        cursor: pointer;
+        width: calc(100% / 7);
+        box-sizing: border-box;
+        border: 1px solid #f4f4f4;
+        border-left: none;
+        border-top: none;
+        height: 100px;
+        position: relative;
+
+        &.disabled {
+          background-color: #f8f8f8;
+          cursor: auto;
+        }
+      }
+    }
+  }
+}
