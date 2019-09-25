@@ -54,7 +54,7 @@ define({ "api": [
         },
         {
           "title": "Success-Response",
-          "content": "{\n \"code\": 200,\n \"msg\": \"OK\",\n \"data\": [{\n     \"date\": \"2019-09-02\",\n     \"morning\": true,\n     \"host\": \"Jinwei\",\n     \"assistHost\": \"CY\",\n     \"topic\": \"How to pick up a girl?\",\n     \"link\": \"https://www.google.com\",\n     \"attendees\": [\"CYC\", \"Andrew\", \"Joy\", \"Bella\"]\n }]\n \"data\": [{\n     \"date\": \"2019-09-02\",\n\n     \"morning\": {\n         \"host\": \"Jinwei\",\n         \"assistHost\": \"CY\",\n         \"topic\": \"How to pick up a girl?\",\n         \"link\": \"https://www.google.com\",\n         \"attendees\": [\"CYC\", \"Andrew\", \"Joy\", \"Bella\"]\n     }\n     \"night\":{\n         \"host\": \"WeiJ\",\n         \"assistHost\": \"CY\",\n         \"topic\": \"How to pick up a boy?\",\n         \"link\": \"https://www.google.com\",\n         \"attendees\": [\"CYC\", \"Andrew\", \"Joy\", \"Bella\"]\n     }\n }]\n\n}",
+          "content": "{\n \"code\": 200,\n \"msg\": \"OK\",\n\n \"data\": [{\n     \"date\": \"2019-09-02\",\n\n     \"morning\": {\n         \"host\": \"Jinwei\",\n         \"assistHost\": \"CY\",\n         \"topic\": \"How to pick up a girl?\",\n         \"link\": \"https://www.google.com\",\n         \"attendees\": [\"CYC\", \"Andrew\", \"Joy\", \"Bella\"]\n     },\n\n     \"night\":{\n         \"host\": \"WeiJ\",\n         \"assistHost\": \"CY\",\n         \"topic\": \"How to pick up a boy?\",\n         \"link\": \"https://www.google.com\",\n         \"attendees\": [\"CYC\", \"Andrew\", \"Joy\", \"Bella\"]\n     }\n }]\n\n}",
           "type": "json"
         }
       ]

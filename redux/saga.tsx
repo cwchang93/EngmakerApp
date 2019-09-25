@@ -97,9 +97,9 @@ function* google(): any {
     }
 }
 function* google_out(): any {
-    yield firebase.auth().signOut();
+    // yield firebase.auth().signOut();
     const user = yield firebase.auth().currentUser;
-    // console.log(user);
+    console.log(user);
 }
 export default function* rootSaga() {
     yield takeLatest('FETCH_USER', getUserAsync);

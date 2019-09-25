@@ -29,3 +29,4 @@ yarn.lock
 
 # fierbase
 /config/firebase.js
+/.firebase/

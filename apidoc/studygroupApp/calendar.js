@@ -35,7 +35,7 @@
  * @apiParam {Array}  attendees  當天參加成員
  *
  *
- * @apiSuccessExample Success-Response
+ * @apiSuccessExample Success-Response2
  * {
  *  "code": 200,
  *  "msg": "OK",
