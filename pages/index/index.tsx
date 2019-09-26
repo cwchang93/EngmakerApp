@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import actionTypes from '@constants/actionType';
 import './css.scss';
 import { fireDb } from '@config/firebase';
+import { now } from 'moment';
 // import { useRouter } from "next/router";
 
 const Home = (props: any) => {
@@ -20,20 +21,24 @@ const Home = (props: any) => {
         action('FETCH_USER', { userID: userid });
     };
     const Write = async () => {
-        const ref = await fireDb.collection('test').doc('test');
+        const ref = await fireDb.collection('test123').doc('test123');
         const document = {
-            text: 'This is a test message.',
+            text: new Date(),
         };
+        console.log('Writing');
         try {
+            console.log('try');
             await ref.set(document);
         } catch (e) {
             // TODO: error handling
             console.error(e);
         }
     };
-    // Write();
+    Write();
+    console.log('Read');
     const Read = async () => {
-        const ref = await fireDb.collection('test').doc('test');
+        // const ref = await fireDb.collection('test').doc('test');
+        const ref = await fireDb.collection(',kljh').doc('calendarData');
         try {
             const data = await ref.get();
 
@@ -88,7 +93,13 @@ const Home = (props: any) => {
             </Head>
             <div className="title">首頁{countState.count}</div>
             <div style={{ textAlign: 'center', marginTop: '10px' }}>
-                <button style={{ padding: '5px', margin: '5px' }} onClick={() => action(actionTypes.INCREMENT)}>
+                <button
+                    style={{ padding: '5px', margin: '5px' }}
+                    onClick={() => {
+                        action(actionTypes.INCREMENT);
+                        Write();
+                    }}
+                >
                     +1
                 </button>
                 <button style={{ padding: '5px', margin: '5px' }} onClick={() => action(actionTypes.DECREMENT)}>

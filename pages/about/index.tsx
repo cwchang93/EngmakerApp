@@ -5,9 +5,8 @@ import './css.scss';
 
 const MyApp = () => {
     const classnames = 'about_';
-
     return (
-        <div className={classNames(classnames)}>
+        <div className={classNames(classnames, 'hello')}>
             <Head>
                 <title>關於我們</title>
             </Head>
