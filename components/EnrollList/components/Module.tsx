@@ -4,33 +4,37 @@ import classNames from 'classnames';
 import { Input, Form, Button, Select } from 'antd';
 const styles = require('../css.scss');
 
-interface I_Props_FormInput {
-    title?: string;
-    placeholder?: string;
-    disabled: boolean;
-    className?: string;
-    onChange?: any;
+// interface I_Props_FormInput {
+//     title?: string;
+//     placeholder?: string;
+//     disabled: boolean;
+//     className?: string;
+//     onChange?: any;
+// }
+
+// const FormInput: React.FC<I_Props_FormInput> = props => {
+//     const { title, placeholder, disabled } = props;
+//     return (
+//         <div className="formInput">
+//             {title ? <span>{title}</span> : null}
+//             <div className="inputWrap">
+//                 <Input
+//                     placeholder={placeholder}
+//                     disabled={disabled}
+//                     onChange={e => {
+//                         props.onChange && props.onChange(e);
+//                     }}
+//                 />
+//             </div>
+//         </div>
+//     );
+// };
+
+interface I_Props_enroll {
+    onClose: () => void;
 }
 
-const FormInput: React.FC<I_Props_FormInput> = props => {
-    const { title, placeholder, disabled } = props;
-    return (
-        <div className="formInput">
-            {title ? <span>{title}</span> : null}
-            <div className="inputWrap">
-                <Input
-                    placeholder={placeholder}
-                    disabled={disabled}
-                    onChange={e => {
-                        props.onChange && props.onChange(e);
-                    }}
-                />
-            </div>
-        </div>
-    );
-};
-
-const Module: React.FC = (props: any) => {
+const Module: React.FC<I_Props_enroll> = props => {
     const classnames = 'EnrollList';
     const cx: any = classNames.bind(styles);
     console.log(props);
@@ -39,7 +43,8 @@ const Module: React.FC = (props: any) => {
     const [topic, setTopic] = useState(props.topic);
 
     const [questionsNum, setQuestionsNum] = useState(0);
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState<any[]>([]);
+    const [input, setInput] = useState<any[]>([]);
 
     useEffect(() => {
         props.host ? setHosted(true) : setHosted(false);
@@ -58,11 +63,14 @@ const Module: React.FC = (props: any) => {
 
     const deleteQuestion = (idx: number) => {
         const newQuestionArr = [...questions];
+        const newInput = [...input];
         for (let i = 0; i < newQuestionArr.length; i++) {
             if (i === idx) {
                 newQuestionArr.splice(i, 1);
+                newInput.splice(i, 1);
             }
         }
+        setInput(newInput);
         setQuestions(newQuestionArr);
     };
 
@@ -76,6 +84,18 @@ const Module: React.FC = (props: any) => {
                 <Form.Item label="Host"> */}
             {/* <div>
                 <div className="inputTitle"> */}
+            <div className="crossWrap">
+                <Button
+                    icon="cross"
+                    shape="round"
+                    onClick={() => {
+                        console.log('cross');
+                        props.onClose && props.onClose();
+                    }}
+                />
+                {/* }
+                {/* /> */}
+            </div>
             <div className="inputContainer">
                 {/* <FormInput title="Date" placeholder={props.date} disabled={true} />
                 <FormInput title="Host" placeholder={props.host} disabled={true} />
@@ -115,7 +135,7 @@ const Module: React.FC = (props: any) => {
                         {/* {getFieldDecorator('note', {
                             rules: [{ required: true, message: 'Please input your note!' }],
                         })(<Input />)} */}
-                        <Input />
+                        <Input disabled={props.date ? true : false} placeholder={props.date} />
                         <Select
                             placeholder="Morning/Night"
                             // onChange={this.handleSelectChange}
@@ -125,7 +145,7 @@ const Module: React.FC = (props: any) => {
                         </Select>
                     </Form.Item>
                     <Form.Item label="Host">
-                        <Input />
+                        <Input disabled={props.host ? true : false} placeholder={props.host} />
                     </Form.Item>
                     <Form.Item label="Topic">
                         <Input />
@@ -148,6 +168,9 @@ const Module: React.FC = (props: any) => {
                                 size={'default'}
                                 onClick={() => {
                                     addQuestions();
+                                    const newArr = [...input];
+                                    newArr.push('');
+                                    setInput(newArr);
                                 }}
                             >
                                 Add a Question
@@ -158,12 +181,23 @@ const Module: React.FC = (props: any) => {
                                 return (
                                     <div key={ele} className="questionWrap">
                                         <div className="inputQWrap">
-                                            <div className="question">{ele}</div>
-                                            <Input placeholder={ele} className="questionInput" />
+                                            <div className="question">Question: {i + 1}</div>
+                                            <Input
+                                                placeholder={`Question ${i + 1}`}
+                                                className="questionInput"
+                                                onChange={e => {
+                                                    const newInput = [...input];
+                                                    newInput[i] = e.target.value;
+                                                    setInput(newInput);
+                                                    console.log('input', input);
+                                                }}
+                                            />
                                             <Button
                                                 type="danger"
                                                 icon="close"
-                                                onClick={() => deleteQuestion(i)}
+                                                onClick={() => {
+                                                    deleteQuestion(i);
+                                                }}
                                             ></Button>
                                         </div>
                                     </div>
@@ -173,7 +207,14 @@ const Module: React.FC = (props: any) => {
                         {/* </Form.Item> */}
                     </Form>
                     <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
-                        <Button type="primary" htmlType="submit">
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            onClick={() => {
+                                console.log('questions: ', questions);
+                                console.log('input: ', input);
+                            }}
+                        >
                             Submit
                         </Button>
                     </Form.Item>
