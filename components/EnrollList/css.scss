@@ -10,7 +10,48 @@ $classname: 'EnrollList';
     // style on phone device
     display: block;
 
+    .inputContainer {
+        background: white;
+        text-align: center;
+        width: calc(100% - 20px);
+        margin: auto;
+        margin-top: 15px;
 
+
+        .discussionWrap {
+            // .discussion{
+            //     margin-right: 
+            // }
+
+
+            text-align: left;
+
+            >button {
+                margin-left: 20px;
+            }
+        }
+
+        .inputWrap {
+            .question {
+                text-align: left;
+            }
+
+            .questionInput {
+                width: 90%;
+            }
+        }
+
+    }
+
+    .mask {
+        background: rgba(0, 0, 0, 0.7);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        top: 0px;
+        left: 0px;
+    }
 
 
 }
