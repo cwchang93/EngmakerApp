@@ -21,18 +21,18 @@ $classname: 'EnrollList';
     }
 
     .inputContainer {
+        height: 280px;
+        overflow: auto;
         background: white;
         text-align: center;
         width: calc(100% - 20px);
         margin: auto;
         margin-top: 5px;
 
-
         .discussionWrap {
             // .discussion{
-            //     margin-right: 
+            //     margin-right:
             // }
-
 
             text-align: left;
 
@@ -49,8 +49,13 @@ $classname: 'EnrollList';
             .questionInput {
                 width: 90%;
             }
-        }
 
+            .insideWrap {
+                display: flex;
+                justify-content: space-between;
+                margin: 5px;
+            }
+        }
     }
 
     .mask {
@@ -62,6 +67,4 @@ $classname: 'EnrollList';
         top: 0px;
         left: 0px;
     }
-
-
 }

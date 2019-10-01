@@ -18,6 +18,7 @@ $classname: 'hd_test';
  * 3. 下media query時請依手機優先的設計方法來設計
  */
 %break_div {
+    z-index: 99;
     position: fixed;
     top: 0;
     left: 0;
@@ -45,6 +46,7 @@ $classname: 'hd_test';
     grid-template-columns: 1fr auto auto;
     padding: 5px 10px;
     gap: 8px;
+
 
     >div.icon {
         @include flexcc;

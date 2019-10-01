@@ -2,36 +2,14 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 // import styles from '../css.scss';
 import { Input, Form, Button, Select } from 'antd';
+import { setTitle } from '@root/redux/actions';
 const styles = require('../css.scss');
-
-// interface I_Props_FormInput {
-//     title?: string;
-//     placeholder?: string;
-//     disabled: boolean;
-//     className?: string;
-//     onChange?: any;
-// }
-
-// const FormInput: React.FC<I_Props_FormInput> = props => {
-//     const { title, placeholder, disabled } = props;
-//     return (
-//         <div className="formInput">
-//             {title ? <span>{title}</span> : null}
-//             <div className="inputWrap">
-//                 <Input
-//                     placeholder={placeholder}
-//                     disabled={disabled}
-//                     onChange={e => {
-//                         props.onChange && props.onChange(e);
-//                     }}
-//                 />
-//             </div>
-//         </div>
-//     );
-// };
 
 interface I_Props_enroll {
     onClose: () => void;
+    topic?: string;
+    date?: string;
+    host?: string;
 }
 
 const Module: React.FC<I_Props_enroll> = props => {
@@ -45,6 +23,8 @@ const Module: React.FC<I_Props_enroll> = props => {
     const [questionsNum, setQuestionsNum] = useState(0);
     const [questions, setQuestions] = useState<any[]>([]);
     const [input, setInput] = useState<any[]>([]);
+
+    const [editQ, setEditQ] = useState<boolean[]>([]);
 
     useEffect(() => {
         props.host ? setHosted(true) : setHosted(false);
@@ -140,8 +120,8 @@ const Module: React.FC<I_Props_enroll> = props => {
                             placeholder="Morning/Night"
                             // onChange={this.handleSelectChange}
                         >
-                            <Option value="am">AM</Option>
-                            <Option value="pm">PM</Option>
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
                         </Select>
                     </Form.Item>
                     <Form.Item label="Host">
@@ -162,43 +142,44 @@ const Module: React.FC<I_Props_enroll> = props => {
                         {/* <Form.Item label="Discussion"> */}
                         <div className="discussionWrap">
                             <span className="discussion">Discussion</span>
-                            <Button
-                                type="primary"
-                                icon="plus"
-                                size={'default'}
-                                onClick={() => {
-                                    addQuestions();
-                                    const newArr = [...input];
-                                    newArr.push('');
-                                    setInput(newArr);
-                                }}
-                            >
-                                Add a Question
-                            </Button>
                         </div>
                         <div className="inputWrap">
                             {questions.map((ele, i) => {
                                 return (
                                     <div key={ele} className="questionWrap">
                                         <div className="inputQWrap">
-                                            <div className="question">Question: {i + 1}</div>
-                                            <Input
-                                                placeholder={`Question ${i + 1}`}
-                                                className="questionInput"
-                                                onChange={e => {
-                                                    const newInput = [...input];
-                                                    newInput[i] = e.target.value;
-                                                    setInput(newInput);
-                                                    console.log('input', input);
-                                                }}
-                                            />
-                                            <Button
-                                                type="danger"
-                                                icon="close"
-                                                onClick={() => {
-                                                    deleteQuestion(i);
-                                                }}
-                                            ></Button>
+                                            <div className="question">Question{i + 1}:</div>
+                                            <div className="insideWrap">
+                                                <Input
+                                                    placeholder={`Question ${i + 1}`}
+                                                    className="questionInput"
+                                                    onChange={e => {
+                                                        const newInput = [...input];
+                                                        newInput[i] = e.target.value;
+                                                        setInput(newInput);
+                                                        console.log('input', input);
+                                                    }}
+                                                    disabled={editQ[i]}
+                                                />
+                                                {/* <Button
+                                                    type="primary"
+                                                    icon={editQ[i] ? 'edit' : 'check'}
+                                                    onClick={() => {
+                                                        // deleteQuestion(i);
+                                                        // setqTitle(!qtitle)
+                                                        const editArr = [...editQ];
+                                                        editArr[i] = !editQ[i];
+                                                        setEditQ(editArr);
+                                                    }}
+                                                ></Button> */}
+                                                <Button
+                                                    type="danger"
+                                                    icon="close"
+                                                    onClick={() => {
+                                                        deleteQuestion(i);
+                                                    }}
+                                                ></Button>
+                                            </div>
                                         </div>
                                     </div>
                                 );
@@ -207,6 +188,20 @@ const Module: React.FC<I_Props_enroll> = props => {
                         {/* </Form.Item> */}
                     </Form>
                     <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
+                        <Button
+                            type="primary"
+                            icon="plus"
+                            size={'default'}
+                            onClick={() => {
+                                addQuestions();
+                                const newArr = [...input];
+                                newArr.push('');
+                                setInput(newArr);
+                            }}
+                        >
+                            Add a Question
+                        </Button>
+
                         <Button
                             type="primary"
                             htmlType="submit"
@@ -232,7 +227,6 @@ const Module: React.FC<I_Props_enroll> = props => {
  * Props default value write here
  */
 Module.defaultProps = {
-    title: 'string', // 文字 || String
     date: '2019/09/01',
     host: 'Jinwei',
 };

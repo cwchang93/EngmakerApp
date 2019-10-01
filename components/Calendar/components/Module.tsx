@@ -12,18 +12,6 @@ interface I_props {
     initYearMonth: string;
 }
 
-// interface dateData {
-//   date:
-// }
-
-// const dateData = [{
-//   date: '2019-1-1',
-//   host: 'Jinwei'
-
-// }
-
-// ]
-
 const Module: React.FC<I_props> = props => {
     const classnames = 'Calendar';
     const cx: any = classNames.bind(styles);
@@ -51,7 +39,7 @@ const Module: React.FC<I_props> = props => {
 
     const [date, setDate] = useState('');
 
-    const [closeSheet, setCloseSheet] = useState(false);
+    const [closeSheet, setCloseSheet] = useState(true);
 
     const clickNextMonth = () => {
         console.log(typeof nowMonth);
@@ -149,10 +137,11 @@ const Module: React.FC<I_props> = props => {
                     {link('heavy-left-pointing-angle-quotation-mark-ornament')} */}
                 {closeSheet ? null : (
                     <EnrollList
+                        date={date}
                         onClose={() => {
                             setCloseSheet(true);
-                            console.log('fa');
                         }}
+                        host={'CowBoy'}
                     />
                 )}
 
