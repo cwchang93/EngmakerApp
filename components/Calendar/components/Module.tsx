@@ -42,7 +42,7 @@ const Module: React.FC<I_props> = props => {
     const [closeSheet, setCloseSheet] = useState(true);
 
     const clickNextMonth = () => {
-        console.log(typeof nowMonth);
+        // console.log(typeof nowMonth);
         setNowMonth(nowMonth + 1);
     };
 
@@ -50,12 +50,11 @@ const Module: React.FC<I_props> = props => {
         setNowMonth(nowMonth - 1);
     };
 
-    console.log('nowMonth', nowMonth);
-    console.log('renderDate', renderDate);
+    // console.log('nowMonth', nowMonth);
+    // console.log('renderDate', renderDate);
 
     const renderWeek = (): any => {
         return wkArr.map((ele, i) => {
-            console.log('ele', ele);
             return (
                 <div key={i} className="weekDay">
                     {ele}
@@ -88,10 +87,9 @@ const Module: React.FC<I_props> = props => {
                     }}
                 >
                     <span className="dateNum">{i + 1}</span>
-                    <img src="https://picsum.photos/25/25" style={{ borderRadius: '50%' }} />
                     {/* <img src="https://picsum.photos/25/25" style={{ borderRadius: '50%' }} /> */}
-                    /
-                    <img src="https://picsum.photos/25/25" style={{ borderRadius: '50%' }} />
+                    {/* <img src="https://picsum.photos/25/25" style={{ borderRadius: '50%' }} /> */}/
+                    {/* <img src="https://picsum.photos/25/25" style={{ borderRadius: '50%' }} /> */}
                     {/* <img
             src="https://picsum.photos/25/25"
             style={{ borderRadius: "50%" }}
@@ -142,6 +140,7 @@ const Module: React.FC<I_props> = props => {
                             setCloseSheet(true);
                         }}
                         host={'CowBoy'}
+                        // getSubmitData
                     />
                 )}
 

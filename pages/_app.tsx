@@ -28,6 +28,7 @@ const MyApp: React.FC<MyApp_props> = props => {
             </Head>
             <Provider store={store}>
                 {process.env.NODE_ENV === 'development' && <Router />}
+                {/* <Router /> */}
                 <Header action={action} />
                 <Component {...pageProps} action={action} />
             </Provider>

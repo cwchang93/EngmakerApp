@@ -19,6 +19,10 @@ const actionTypes = {
     SET_USER_DATA: 'SET_USER_DATA',
 };
 
+const CalendarDataTypes = {
+    CALENDAR_DATA: 'CALENDAR_DATA',
+};
+
 export enum alert_list {
     Login = '登入成功',
     Logout = '登出成功',
@@ -26,3 +30,5 @@ export enum alert_list {
 }
 
 export default actionTypes;
+
+export { CalendarDataTypes };

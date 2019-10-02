@@ -8,23 +8,39 @@ const styles = require('../css.scss');
 interface I_Props_enroll {
     onClose: () => void;
     topic?: string;
-    date?: string;
+    date: string;
     host?: string;
 }
+
+// interface I_enroll_Data {
+//     date: string;
+//     session: string;
+//     topic: string;
+//     link: string;
+//     host: string;
+//     questions?: string[];
+// }
 
 const Module: React.FC<I_Props_enroll> = props => {
     const classnames = 'EnrollList';
     const cx: any = classNames.bind(styles);
     console.log(props);
+
+    const { Option } = Select;
     const [hosted, setHosted] = useState(false);
 
     const [topic, setTopic] = useState(props.topic);
 
     const [questionsNum, setQuestionsNum] = useState(0);
-    const [questions, setQuestions] = useState<any[]>([]);
-    const [input, setInput] = useState<any[]>([]);
+    const [questions, setQuestions] = useState<string[]>([]);
+    const [input, setInput] = useState<any[]>([]); // questionInput
 
     const [editQ, setEditQ] = useState<boolean[]>([]);
+    // const [session, setSession] = useState<string | number>('');
+    const [session, setSession] = useState<string>('');
+
+    const [topicInput, setTopicInput] = useState<string>('');
+    const [linkInput, setLinkInput] = useState<string>('');
 
     useEffect(() => {
         props.host ? setHosted(true) : setHosted(false);
@@ -52,6 +68,35 @@ const Module: React.FC<I_Props_enroll> = props => {
         }
         setInput(newInput);
         setQuestions(newQuestionArr);
+    };
+
+    const submitData = () => {
+        // props.date  props.host
+        // topic link AM/PM questions
+        console.log('topicInput', topicInput);
+        console.log('linkInput', linkInput);
+
+        // interface I_enroll_Data {
+        //     date?: string;
+        //     session?: string;
+        //     topic: string;
+        //     link: string;
+        //     host: string;
+        //     questions?: string[];
+        // }
+
+        const enrollData: { [k in string]: (string | string[] | undefined) } = {
+            // enrollData
+            ['date']: props.date,
+            ['topic']: topicInput,
+            ['link']: linkInput,
+            ['host']: props.host,
+            ['questions']: questions,
+            ['session']: session,
+        };
+        console.log(enrollData);
+
+        // props.getSubmitData(enrollData);
     };
 
     return (
@@ -116,22 +161,49 @@ const Module: React.FC<I_Props_enroll> = props => {
                             rules: [{ required: true, message: 'Please input your note!' }],
                         })(<Input />)} */}
                         <Input disabled={props.date ? true : false} placeholder={props.date} />
-                        <Select
+                        {/* <Select
                             placeholder="Morning/Night"
                             // onChange={this.handleSelectChange}
                         >
                             <option value="AM">AM</option>
                             <option value="PM">PM</option>
-                        </Select>
+                        </Select> */}
+                        {/* <Form.Item label="Error" hasFeedback validateStatus="error"> */}
+                        <Form.Item hasFeedback>
+                            <Select
+                                onChange={(opt: string) => {
+                                    setSession(opt);
+                                    // console.log(e);
+                                }}
+                            >
+                                {/* <Select defaultValue=""> */}
+                                <Option
+                                    value="AM"
+                                    // onChange={e => {
+                                    //     console.log(e.target.title);
+                                    // }}
+                                >
+                                    AM
+                                </Option>
+                                <Option
+                                    value="PM"
+                                    // onChange={e => {
+                                    //     console.log(e.target.title);
+                                    // }}
+                                >
+                                    PM
+                                </Option>
+                            </Select>
+                        </Form.Item>
                     </Form.Item>
                     <Form.Item label="Host">
                         <Input disabled={props.host ? true : false} placeholder={props.host} />
                     </Form.Item>
                     <Form.Item label="Topic">
-                        <Input />
+                        <Input onChange={e => setTopicInput(e.target.value)} />
                     </Form.Item>
                     <Form.Item label="Link">
-                        <Input />
+                        <Input onChange={e => setLinkInput(e.target.value)} />
                     </Form.Item>
 
                     <Form
@@ -208,6 +280,7 @@ const Module: React.FC<I_Props_enroll> = props => {
                             onClick={() => {
                                 console.log('questions: ', questions);
                                 console.log('input: ', input);
+                                submitData();
                             }}
                         >
                             Submit

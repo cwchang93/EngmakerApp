@@ -14,6 +14,7 @@ $classname: 'routes';
     }
 
     >.#{$classname}-list {
+        z-index: 100;
         transform: translateX(-100%);
         position: fixed;
         display: inline-block;

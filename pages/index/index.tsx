@@ -9,12 +9,14 @@ import { now } from 'moment';
 // import { useRouter } from "next/router";
 import Calendar from '@components/Calendar';
 import { useEffect, useState } from 'react';
-import { write } from 'fs';
+// import { write } from 'fs';
 
 const Home = (props: any) => {
     const classnames = 'home_';
     const { countState, userState } = useSelector((state: { countState: any; userState: any }) => state);
     const { loginState } = useSelector((state: { loginState: any }) => state);
+    const { calendarState } = useSelector((state: { calendarState: any }) => state);
+
     const [userid, setUserid] = React.useState('');
 
     const [calendarData, setCalendarData] = useState<string | undefined>(undefined);
@@ -22,12 +24,17 @@ const Home = (props: any) => {
     const { action } = props;
     console.log('out!!');
     useEffect(() => {
-        loginState.data && Write();
-
+        // loginState.data && Write();
+        console.log('calendarState', calendarState);
+        console.log('loginState', loginState.logState);
         console.log('useEffect');
+
+        loginState.logState === 'LOGIN_OK' && Read();
+
+        // console.log('useEffect');
         // Write();
         // Read();
-    }, []);
+    }, [loginState.logState]);
 
     const fetchUser = () => {
         console.log('USER : ', userid);
@@ -55,20 +62,17 @@ const Home = (props: any) => {
         console.log('reading');
         try {
             const data = await ref.get();
-            console.log('dt', data.data());
-            console.log('type', typeof data.data());
-            const newData = JSON.stringify(data.data());
-            // data.data() !== calendarData && setCalendarData(data.data());
+            const newData = JSON.stringify(data.data()); // 要轉字串，因為object包的東西會不相等
+            console.log('newData', newData);
+            // console.log('calendarData', calendarData);
             if (newData !== calendarData) setCalendarData(newData);
-            console.log('999', newData === calendarData);
-            console.log('888', calendarData);
-            // setCalendarData(data.data());
+            console.log('calendarDAta', calendarData);
         } catch (e) {
             // TODO: error handling
             console.error(e);
         }
     };
-    loginState && Read();
+    // loginState && Read();
 
     const remove = async () => {
         const ref = await fireDb.collection('test').doc('test');
@@ -123,7 +127,13 @@ const Home = (props: any) => {
                 >
                     +1
                 </button>
-                <button style={{ padding: '5px', margin: '5px' }} onClick={() => action(actionTypes.DECREMENT)}>
+                <button
+                    style={{ padding: '5px', margin: '5px' }}
+                    onClick={() => {
+                        action(actionTypes.DECREMENT);
+                        console.log('cd', calendarData);
+                    }}
+                >
                     -1
                 </button>
                 <button style={{ padding: '5px', margin: '5px' }} onClick={() => action(actionTypes.RESET)}>
