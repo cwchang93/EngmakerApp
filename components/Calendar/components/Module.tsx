@@ -10,6 +10,7 @@ import EnrollList from '@components/EnrollList';
 
 interface I_props {
     initYearMonth: string;
+    dateCallBack?: any;
 }
 
 const Module: React.FC<I_props> = props => {
@@ -39,10 +40,9 @@ const Module: React.FC<I_props> = props => {
 
     const [date, setDate] = useState('');
 
-    const [closeSheet, setCloseSheet] = useState(true);
+    // const [closeSheet, setCloseSheet] = useState(true);
 
     const clickNextMonth = () => {
-        // console.log(typeof nowMonth);
         setNowMonth(nowMonth + 1);
     };
 
@@ -50,8 +50,9 @@ const Module: React.FC<I_props> = props => {
         setNowMonth(nowMonth - 1);
     };
 
-    // console.log('nowMonth', nowMonth);
-    // console.log('renderDate', renderDate);
+    const dateClickCallBack = (date: any) => {
+        props.dateCallBack(date);
+    };
 
     const renderWeek = (): any => {
         return wkArr.map((ele, i) => {
@@ -81,39 +82,17 @@ const Module: React.FC<I_props> = props => {
                     className="day"
                     id={`${renderYear}-${renderMonth}-${i + 1}`}
                     onClick={e => {
-                        console.log(e.currentTarget);
                         setDate(e.currentTarget.id);
-                        setCloseSheet(false);
+                        dateClickCallBack(e.currentTarget.id);
+                        // setCloseSheet(false);
                     }}
                 >
                     <span className="dateNum">{i + 1}</span>
-                    {/* <img src="https://picsum.photos/25/25" style={{ borderRadius: '50%' }} /> */}
-                    {/* <img src="https://picsum.photos/25/25" style={{ borderRadius: '50%' }} /> */}/
-                    {/* <img src="https://picsum.photos/25/25" style={{ borderRadius: '50%' }} /> */}
-                    {/* <img
-            src="https://picsum.photos/25/25"
-            style={{ borderRadius: "50%" }}
-          /> */}
                     <div>
-                        A
-                        {/* <span>
-              Host:
-              <img
-                src="https://picsum.photos/25/25"
-                style={{ borderRadius: "50%" }}
-              />
-            </span> */}
-                        <i className="fas fa-kiwi-bird"></i>
+                        {' '}
+                        A<i className="fas fa-kiwi-bird"></i>
                         <div>Attendees: 3 </div>
                     </div>
-                    {/* <div>
-                        P */}
-                    {/* <span>
-              Host:
-              <img src="https://picsum.photos/25/25" />
-            </span> */}
-                    {/* <div>Attendees: 10 </div> */}
-                    {/* </div> */}
                 </div>,
             );
         }
@@ -133,7 +112,7 @@ const Module: React.FC<I_props> = props => {
 
                 {/* <Module {...common} word={'❮'} />
                     {link('heavy-left-pointing-angle-quotation-mark-ornament')} */}
-                {closeSheet ? null : (
+                {/* {closeSheet ? null : (
                     <EnrollList
                         date={date}
                         onClose={() => {
@@ -142,7 +121,7 @@ const Module: React.FC<I_props> = props => {
                         host={'CowBoy'}
                         // getSubmitData
                     />
-                )}
+                )} */}
 
                 <div className="headWrap">
                     <div className="headWrapItem" onClick={clickPrevMonth}>

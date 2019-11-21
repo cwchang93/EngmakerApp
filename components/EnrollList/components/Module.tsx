@@ -10,6 +10,7 @@ interface I_Props_enroll {
     topic?: string;
     date: string;
     host?: string;
+    store?: any;
 }
 
 // interface I_enroll_Data {
@@ -25,6 +26,8 @@ const Module: React.FC<I_Props_enroll> = props => {
     const classnames = 'EnrollList';
     const cx: any = classNames.bind(styles);
     console.log(props);
+    const { store } = props;
+    const action = (type: any, payload: {} = {}) => store.dispatch({ type, payload });
 
     const { Option } = Select;
     const [hosted, setHosted] = useState(false);
