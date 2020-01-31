@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import styles from '../css.scss';
@@ -24,12 +24,22 @@ const Module: React.FC = (props: any) => {
 
     const mode: string = props.mode;
 
+    const [data, setData] = useState<string>('');
+    useEffect(() => {
+        console.log('effect');
+        console.log('data', data);
+    });
+
     return (
         <div className={cx(classnames, mode)}>
             <div className="scheduleWrap">
                 <div className="timeSection">
-                    <span className="date">1</span>
-                    <span className="day">Sunday</span>
+                    <span className="date" onClick={() => setData('1')}>
+                        1
+                    </span>
+                    <span className="day" onClick={() => setData('hi')}>
+                        Sunday
+                    </span>
                     <span className="time">7:00</span>
                 </div>
 
