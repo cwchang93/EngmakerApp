@@ -45,6 +45,7 @@
     "[typescriptreact]": {
         "editor.formatOnSave": false
     },
+    "liveServer.settings.port": 5501,
 
     // "gitlens.currentLine.enabled": false
 }

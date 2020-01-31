@@ -6,6 +6,7 @@ import actionTypes from '@constants/actionType';
 import './css.scss';
 import { fireDb } from '@config/firebase';
 import { now } from 'moment';
+import Apple from '@static/apple.svg';
 // import { useRouter } from "next/router";
 import Calendar from '@components/Calendar';
 import { useEffect, useState } from 'react';

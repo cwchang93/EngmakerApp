@@ -1,0 +1,307 @@
+import React from 'react';
+
+// console.log("ant", Button);
+import '../style/css.scss';
+import '../style/animate.css';
+import '../style/normalize.css';
+
+const Module: React.FC = () => {
+    return (
+        <React.Fragment>
+            <div id="header">
+                <div className="container clearfix">
+                    <nav className="navbar navbar-expand-sm fixed-top navbar-light ">
+                        <a className="navbar-brand" href="index.html">
+                            <img src="../img/stingLogo.png" className="d-inline-block align-top my-logo" alt=""></img>
+                        </a>
+                        <button
+                            className="navbar-toggler"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul className="nav navbar-nav navli ml-auto">
+                                <li className="nav-0 active">
+                                    <a href="#outlets">About us</a>
+                                </li>
+                                <li className="nav-1">
+                                    <a href="#skills">Rules</a>
+                                </li>
+                                <li className="nav-2">
+                                    <a href="#calendar">Calender</a>
+                                </li>
+                                <li className="nav-3">
+                                    <a href="#protfolio">Join us</a>
+                                </li>
+                                <li className="nav-4">
+                                    <a href="./login.html">Sign in</a>
+                                </li>
+                                <li className="nav-5">
+                                    {/* style="border-radius: 3px; border:1px solid #0B346E" */}
+                                    <a href="./register.html">Sign up</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div className="content">
+                <div id="top-slide">
+                    <div className="container clearfix">
+                        <div className="row">
+                            <div className="col-md-6 col-sm-12 slide-l">
+                                <div className="next">
+                                    <h3>Next Topic on Sep 10 7:00</h3>
+                                    <div className="materials">
+                                        {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/xLhNP0qp38Q" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen={true}></iframe> */}
+                                    </div>
+                                    <h5>Host: Jinwei</h5>
+                                </div>
+                            </div>
+                            <div className="col-md-6 col-sm-12 slide-r">
+                                <div className="nameBanner">
+                                    <img src="./stingLogo.png" alt="M&E English Talking Lab"></img>
+                                </div>
+                                我們是Morning & Evening 英會製造所在這裏，製造出每日早晚1小時的英語會話歡迎大家來參加～
+                                {/* <p>我們是<span style="color:#0B346E">Morning & Evening 英會製造所</span></br>
+
+									在這裏，製造出<span style="color:#0B346E">每日早晚1小時的英語會話</span></br>
+									歡迎大家來參加～</br> 
+								</br>*/}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="outlets">
+                    <div className="container clearfix">
+                        <div id="intro" className="wow fadeIn">
+                            <h2> 本所介紹與特色</h2>
+                            <hr />
+                            <p>
+                                M&E 英會製造所使用SKYPE進行小組制英語會話練習， 目前成員近30位，已穩定運作2年以上，
+                                成員來自各行各業背景經歷豐富 律師、國外業務、工程師...etc 等你來認識！
+                            </p>
+                        </div>
+                        <div id="services">
+                            <div className="container clearfix">
+                                <div className="row">
+                                    <div className="col-md-4 col-sm-12 service wow flipInX">
+                                        <div className="thumbnail">
+                                            <a href="#protfolio">
+                                                <div className="cover"></div>
+                                            </a>
+                                            <i className="far fa-lightbulb"></i>
+                                            <h3 className="title">好品質</h3>
+                                            <p>
+                                                成員英文程度分布於多益850-990之間 都能清楚地用英文表達。
+                                                其中一半的成員具有托福破百及雅思7以上的程度
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4 col-sm-12 service wow flipInX" data-wow-delay="0.5s">
+                                        <div className="thumbnail">
+                                            <a href="#skills">
+                                                <div className="cover"></div>
+                                            </a>
+                                            <i className="far fa-window-maximize"></i>
+                                            <h3 className="title">有組織</h3>
+                                            <p>讀書會有一套運作標準 且嚴格執行及管理 不用擔心讀書會持續不久</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4 col-sm-12 service wow flipInX" data-wow-delay="1s">
+                                        <div className="thumbnail">
+                                            <a href="#" target="_blank">
+                                                <div className="cover"></div>
+                                            </a>
+                                            <i className="fab fa-linkedin-in"></i>
+                                            <h3 className="title">任何地方</h3>
+                                            <p>
+                                                不管你在任何地方只要有網路都可以開始
+                                                另外不定期舉辦outing活動(如英文桌遊、聚餐、溜冰...）
+                                                讓大家線上線下相見歡
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="rules">
+                    <div className="container clearfix">
+                        <div id="intro">
+                            <h2>運作規則</h2>
+                            <hr />
+                            <p>
+                                每月任務：10 Points + 1 Host 未告知而缺席一次最多可能扣3點
+                                月底未達成10點及1主持者，將不另行通知直接取消本所會員
+                            </p>
+                        </div>
+                        <div className="row">
+                            <div id="icon-list" className="col-sm-12 col-md-6">
+                                <img src="./img/rules.jpg" alt="First slide" />
+                            </div>
+                            <div className="col-sm-12 col-md-6">
+                                <h2 className="title">基本點數計算方式</h2>
+                                <hr />
+                                <h6>早場 7:00 - 7:50</h6>
+                                <p>主持人：2.5 points / 協助主持：1.5 points / 參加者：1 point</p>
+
+                                <h6>晚場 10:00 - 10:50</h6>
+                                <p>主持人：2 points / 協助主持：1.5 points / 參加者：1 point</p>
+
+                                <div className="row">
+                                    <div className="col-sm-12 col-md-6">
+                                        <h2 className="title">擔任主持人</h2>
+                                        <hr />- 48小時前上傳3up討論題目 - 上傳摘要錄音檔（約2分鐘） - 主持討論 -
+                                        如人數超過5人，須安排分組及邀請協助主持
+                                    </div>
+                                    <div className="col-sm-12 col-md-6">
+                                        <h2 className="title">參加討論者</h2>
+                                        <hr />- 上傳摘要錄音檔（約2分鐘） - 參與討論
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="calender">
+                    <div className="container clearfix">
+                        <div id="intro">
+                            <h2>正在進行...</h2>
+                            <hr />
+
+                            <p>M&E英會製造所本月行程</p>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-12 col-md-8">Calendar initYearMonth="2019-10" /></div>
+                            <div id="icon-list" className="col-sm-12 col-md-4">
+                                <h3>Date: 09/10/2019</h3>
+                                <h3>Host: Jinwei</h3>
+                                <h3>
+                                    <a href="https://www.youtube.com/watch?v=O3npvris_TA&feature=youtu.be">
+                                        The Problem with Over-Friendly People
+                                    </a>
+                                </h3>
+                                <h5>Questions: </h5>
+                                <p>
+                                    {' '}
+                                    1. Do you think you are a over friendly person ? Did you ever put yourself in a
+                                    embarrassing situation because you are nice to people ? 2. Do you like to getting
+                                    along with over friendly people ? Why or why not? Why people’s behavior get changed
+                                    to become over nice to others? 3. Is over friendly people easily survive in
+                                    workplace? Or what occupation suites them best?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="joinus">
+                    <div id="intro">
+                        <h2>加入我們</h2>
+                        <hr />
+                        <p>幾個小步驟，立刻加入M&E英會製造所</p>
+                    </div>
+                    <div className="container clearfix">
+                        <ul className="timeline">
+                            <li className="year first">Steps</li>
+                            <li className="event offset-first wow fadeInLeft">
+                                <b>
+                                    1. 寄出申請信至<a href="mailto:hr@chun-wei.com">M&E</a>
+                                </b>
+                                <br />
+                                <hr />
+                            </li>
+                            <li className="event wow fadeInRight" data-wow-delay="0.2s">
+                                <b>來信敘明</b>
+                                <br />
+                                <div>
+                                    1. 英文程度 2. 自介 3. 參與動機
+                                    <br />
+                                    4. 對讀書會的期待 5.帳號
+                                    <br />
+                                    PS. 請務必將line權限開放，否則找不到會直接跳過
+                                    <br />
+                                </div>
+                            </li>
+                            <li className="event wow fadeInLeft" data-wow-delay="0.2s">
+                                <b>2. 10-15mins 小會談 </b>
+                                <br />
+                                <hr />
+                                <div>
+                                    • 請密切注意Skype及Line
+                                    <br />
+                                    • 組員會和你約個時間聊聊天
+                                    <br />
+                                    • 會談中將使用skype螢幕分享功能
+                                    <br />
+                                    • 僅使用語音功能（不使用視訊）
+                                    <br />
+                                </div>
+                            </li>
+
+                            <li className="event wow fadeInLeft" data-wow-delay="0.2s">
+                                <b>通過了但有點猶豫？沒關係！考慮3天</b>
+                                <br />
+                                <hr />
+                                <div>
+                                    • 希望加入者能遵守規範不要隨意退出
+                                    <br />
+                                </div>
+                            </li>
+
+                            <li className="event wow fadeInLeft" data-wow-delay="0.2s">
+                                <a href="mailto:hr@chun-wei.com" title="christian fei">
+                                    立即申請
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="footer" style={{ backgroundColor: '#0B346E' }}>
+                <div className="container clearfix">
+                    <div className="logo">
+                        <img src="./ME2-C.png" alt="logo"></img>
+                    </div>
+                    <div className="row">
+                        <div className="footer-words col-md-6 col-sm-12">
+                            <div className="copyright">
+                                <div className="title">&copy; M&E English Talking Lab 2019.</div>
+                                <div className="subtitle">Feel free and progrossing</div>
+                            </div>
+                        </div>
+                        <div className="footer-icons col-md-6 col-sm-12">
+                            <div className="social-media">
+                                <ul className="clearfix">
+                                    <li>
+                                        <a href="#" target="_blank">
+                                            <i className="fab fa-line"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="mailto:hr@chun-wei.com">
+                                            <i className="fas fa-envelope"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a id="go-top" href="#header">
+                Top
+            </a>
+        </React.Fragment>
+    );
+};
+
+export default Module;
